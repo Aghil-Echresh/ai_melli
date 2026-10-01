@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>AI Melli | پنل هوش مصنوعی</title>
+<style>
+:root{--bg:#070b16;--card:#10172a;--card2:#151e35;--text:#eef3ff;--muted:#9aa8c7;--line:#263454;--accent:#7c5cff;--accent2:#20d6b5;--danger:#ff6b7a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#1b2850 0,#070b16 38%,#050711 100%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Tahoma,sans-serif;min-height:100vh}
+.wrap{max-width:1050px;margin:auto;padding:24px}.hero{padding:28px 0 18px}.badge{display:inline-flex;padding:7px 12px;border:1px solid var(--line);border-radius:999px;color:#c9d4f4;background:#0c1325}.hero h1{font-size:clamp(32px,7vw,58px);margin:16px 0 8px}.hero p{color:var(--muted);font-size:17px;line-height:1.9;max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,#111a2e,#0d1425);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 14px 40px #0005}.card h2{margin:0 0 8px;font-size:20px}.card p{color:var(--muted);line-height:1.8;min-height:60px}
+textarea,select{width:100%;border:1px solid var(--line);background:#080d1a;color:var(--text);border-radius:14px;padding:13px;font:inherit;outline:none}textarea{min-height:120px;resize:vertical}.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+button,.btn{border:0;border-radius:13px;padding:11px 15px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.primary{background:var(--accent);color:white}.secondary{background:#1a2540;color:#dce5ff;border:1px solid var(--line)}.green{background:var(--accent2);color:#06131a}
+.notice{margin:18px 0;padding:15px 17px;border:1px solid #31506d;background:#0b1727;border-radius:16px;color:#c7d7ee;line-height:1.8}.notice b{color:white}
+.section{margin-top:18px}.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}.item{background:#0b1221;border:1px solid var(--line);border-radius:16px;padding:10px;overflow:hidden}.item img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:11px}.item a{color:#dce5ff;text-decoration:none;display:block;padding:8px 2px;font-size:13px;word-break:break-word}.status{color:var(--muted);font-size:14px}.footer{text-align:center;color:#71809f;padding:30px 0 10px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<span class="badge">🚀 AI Melli • GitHub Actions</span>
+<h1>هوش مصنوعی ملی</h1>
+<p>یک پنل موبایل‌پسند برای اجرای قابلیت‌های موجود در ریپازیتوری <b>Aghil-Echresh/ai_melli</b>. این صفحه امن است و توکن GitHub را داخل مرورگر ذخیره نمی‌کند.</p>
+</header>
+
+<div class="notice">⚡ <b>روش کار:</b> پرامپت را بنویس، گزینه را انتخاب کن و وارد صفحه همان Workflow شو. اجرای اصلی روی GitHub Actions انجام می‌شود و خروجی داخل پوشه <b>output</b> برمی‌گردد.</div>
+
+<section class="grid">
+<div class="card">
+<h2>📝 تولید متن</h2><p>برای چت، مقاله، کدنویسی، ترجمه و پاسخ‌های متنی.</p>
+<textarea id="textPrompt" placeholder="مثلاً: یک متن تبلیغاتی برای سوپرمارکت بنویس..."></textarea>
+<div class="row"><select id="textModel"><option value="openai">OpenAI</option><option value="mistral">Mistral</option><option value="llama">Llama</option><option value="claude">Claude</option></select></div>
+<div class="row"><button class="primary" onclick="openWorkflow('text-generation.yml','textPrompt')">اجرای تولید متن ↗</button></div>
+</div>
+
+<div class="card">
+<h2>🎨 تولید تصویر</h2><p>ساخت تصویر با Workflow تصویری موجود در پروژه.</p>
+<textarea id="imagePrompt" placeholder="مثلاً: فروشگاه مدرن محله‌ای در غروب..."></textarea>
+<div class="row"><select id="imageModel"><option>flux</option><option>turbo</option><option>flux-realism</option><option>flux-anime</option><option>flux-3d</option><option>flux-pro</option></select></div>
+<div class="row"><button class="primary" onclick="openWorkflow('image-generation.yml','imagePrompt')">اجرای تولید تصویر ↗</button></div>
+</div>
+
+<div class="card">
+<h2>🧠 تصویر هوشمند</h2><p>پرامپت فارسی را به Workflow بهینه‌سازی و تولید تصویر بده.</p>
+<textarea id="smartPrompt" placeholder="پرامپت فارسی خودت را اینجا بنویس..."></textarea>
+<div class="row"><button class="green" onclick="openWorkflow('smart-image-generation.yml','smartPrompt')">اجرای تصویر هوشمند ↗</button></div>
+</div>
+</section>
+
+<section class="card section">
+<h2>🔎 جست‌وجوی وب</h2><p class="status">جست‌وجوی وب، خبر، تصویر و ویدئو از طریق Workflow موجود.</p>
+<textarea id="searchPrompt" placeholder="مثلاً: آخرین اخبار فناوری هوش مصنوعی"></textarea>
+<div class="row"><button class="secondary" onclick="openWorkflow('web-search.yml','searchPrompt')">اجرای جست‌وجو ↗</button><a class="btn secondary" href="https://github.com/Aghil-Echresh/ai_melli/actions" target="_blank" rel="noopener">همه اجراها ↗</a></div>
+</section>
+
+<section class="card section">
+<h2>🖼️ خروجی‌های اخیر</h2>
+<p id="galleryStatus" class="status">در حال دریافت فایل‌های output...</p>
+<div id="gallery" class="gallery"></div>
+</section>
+
+<div class="footer">AI Melli • ساخته‌شده برای ریپازیتوری Aghil-Echresh/ai_melli</div>
+</div>
+<script>
+const owner='Aghil-Echresh',repo='ai_melli',branch='main';
+function openWorkflow(file,field){
+  const prompt=document.getElementById(field).value.trim();
+  if(!prompt){alert('اول پرامپت را وارد کن 🙂');return}
+  localStorage.setItem('ai_melli_prompt_'+file,prompt);
+  window.open('https://github.com/'+owner+'/'+repo+'/actions/workflows/'+file,'_blank');
+}
+async function loadGallery(){
+ try{
+  const r=await fetch('https://api.github.com/repos/'+owner+'/'+repo+'/contents/output?ref='+branch);
+  if(!r.ok) throw new Error('GitHub API '+r.status);
+  const files=await r.json();
+  const media=files.filter(x=>x.type==='file' && /\.(png|jpg|jpeg|webp|gif)$/i.test(x.name)).slice(-24).reverse();
+  const gallery=document.getElementById('gallery');
+  gallery.innerHTML='';
+  if(!media.length){document.getElementById('galleryStatus').textContent='هنوز تصویر جدیدی در output نیست.';return}
+  document.getElementById('galleryStatus').textContent=media.length+' تصویر اخیر';
+  for(const f of media){
+    const div=document.createElement('div');div.className='item';
+    div.innerHTML='<img loading="lazy" src="'+f.download_url+'" alt=""><a target="_blank" rel="noopener" href="'+f.html_url+'">'+f.name+'</a>';
+    gallery.appendChild(div);
+  }
+ }catch(e){document.getElementById('galleryStatus').textContent='دریافت گالری انجام نشد: '+e.message}
+}
+loadGallery();
+</script>
+</body>
+</html>
