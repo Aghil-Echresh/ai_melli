@@ -1,94 +1,35 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b1020">
-<title>AI Melli | پنل هوش مصنوعی</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0f"><title>AI Melli Chat</title>
 <style>
-:root{--bg:#070b16;--card:#10172a;--card2:#151e35;--text:#eef3ff;--muted:#9aa8c7;--line:#263454;--accent:#7c5cff;--accent2:#20d6b5;--danger:#ff6b7a}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#1b2850 0,#070b16 38%,#050711 100%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Tahoma,sans-serif;min-height:100vh}
-.wrap{max-width:1050px;margin:auto;padding:24px}.hero{padding:28px 0 18px}.badge{display:inline-flex;padding:7px 12px;border:1px solid var(--line);border-radius:999px;color:#c9d4f4;background:#0c1325}.hero h1{font-size:clamp(32px,7vw,58px);margin:16px 0 8px}.hero p{color:var(--muted);font-size:17px;line-height:1.9;max-width:760px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}@media(max-width:800px){.grid{grid-template-columns:1fr}}
-.card{background:linear-gradient(180deg,#111a2e,#0d1425);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 14px 40px #0005}.card h2{margin:0 0 8px;font-size:20px}.card p{color:var(--muted);line-height:1.8;min-height:60px}
-textarea,select{width:100%;border:1px solid var(--line);background:#080d1a;color:var(--text);border-radius:14px;padding:13px;font:inherit;outline:none}textarea{min-height:120px;resize:vertical}.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-button,.btn{border:0;border-radius:13px;padding:11px 15px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.primary{background:var(--accent);color:white}.secondary{background:#1a2540;color:#dce5ff;border:1px solid var(--line)}.green{background:var(--accent2);color:#06131a}
-.notice{margin:18px 0;padding:15px 17px;border:1px solid #31506d;background:#0b1727;border-radius:16px;color:#c7d7ee;line-height:1.8}.notice b{color:white}
-.section{margin-top:18px}.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}.item{background:#0b1221;border:1px solid var(--line);border-radius:16px;padding:10px;overflow:hidden}.item img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:11px}.item a{color:#dce5ff;text-decoration:none;display:block;padding:8px 2px;font-size:13px;word-break:break-word}.status{color:var(--muted);font-size:14px}.footer{text-align:center;color:#71809f;padding:30px 0 10px;font-size:13px}
-</style>
-</head>
+:root{--bg:#0b0b0f;--panel:#111116;--panel2:#18181f;--line:#292933;--text:#f5f5f7;--muted:#9a9aa5;--accent:#10a37f;--user:#2a2a31}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif}
+.app{height:100dvh;display:flex;overflow:hidden}.sidebar{width:285px;background:#101014;border-left:1px solid var(--line);padding:12px;display:flex;flex-direction:column;gap:10px}.brand{font-weight:800;font-size:18px;padding:10px 8px}.new{width:100%;background:transparent;border:1px solid #3a3a44;color:var(--text);border-radius:10px;padding:11px;cursor:pointer;text-align:right;font:inherit}.history{flex:1;overflow:auto}.history button{display:block;width:100%;background:transparent;border:0;color:#d9d9df;text-align:right;padding:10px;border-radius:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.history button:hover{background:#1d1d24}.sidefoot{font-size:12px;color:var(--muted);padding:8px;line-height:1.8}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}.top{height:58px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 16px;background:#0c0c10}.menu{display:none;background:none;border:0;color:white;font-size:22px}.title{font-weight:700}.model{color:var(--muted);font-size:13px}.chat{flex:1;overflow:auto}.empty{max-width:760px;margin:14vh auto 0;padding:24px;text-align:center}.empty h1{font-size:32px;margin:0 0 10px}.empty p{color:var(--muted);line-height:1.8}.suggestions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}.suggestions button{background:#14141a;border:1px solid var(--line);color:#ddd;border-radius:12px;padding:14px;text-align:right;cursor:pointer;font:inherit}
+.msg{display:flex;gap:18px;padding:24px max(20px,calc((100% - 820px)/2));line-height:1.9}.msg.user{background:var(--user)}.avatar{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;flex:0 0 auto;font-size:15px}.assistant .avatar{background:var(--accent)}.user .avatar{background:#6b5cff}.bubble{min-width:0;white-space:pre-wrap;word-break:break-word}.bubble img{max-width:100%;border-radius:12px;margin-top:8px}.bubble a{color:#8dddc7}.typing{color:var(--muted)}
+.composer{padding:12px max(14px,calc((100% - 820px)/2));background:linear-gradient(transparent,var(--bg) 18%)}.box{background:#15151b;border:1px solid #34343e;border-radius:16px;padding:9px;box-shadow:0 5px 30px #0007}.box textarea{width:100%;min-height:48px;max-height:180px;resize:none;background:transparent;border:0;outline:0;color:var(--text);font:inherit;line-height:1.7;padding:5px 8px}.tools{display:flex;align-items:center;gap:7px}.tool{background:#22222a;border:1px solid #33333c;color:#ddd;border-radius:9px;padding:7px 10px;cursor:pointer}.send{margin-right:auto;background:var(--text);color:#111;border:0;border-radius:10px;width:38px;height:34px;font-size:18px;cursor:pointer}.send:disabled{opacity:.35}.hint{text-align:center;color:#777;font-size:11px;padding:7px}
+@media(max-width:760px){.sidebar{position:fixed;z-index:5;inset:0 auto 0 0;width:285px;transform:translateX(-105%);transition:.2s;border-left:0;border-right:1px solid var(--line)}.sidebar.open{transform:translateX(0)}.menu{display:block}.msg{padding:20px 15px;gap:12px}.suggestions{grid-template-columns:1fr}.empty{margin-top:9vh;padding:20px}.empty h1{font-size:26px}.composer{padding:8px 9px}.top{padding:0 10px}}
+</style></head>
 <body>
-<div class="wrap">
-<header class="hero">
-<span class="badge">🚀 AI Melli • GitHub Actions</span>
-<h1>هوش مصنوعی ملی</h1>
-<p>یک پنل موبایل‌پسند برای اجرای قابلیت‌های موجود در ریپازیتوری <b>Aghil-Echresh/ai_melli</b>. این صفحه امن است و توکن GitHub را داخل مرورگر ذخیره نمی‌کند.</p>
-</header>
-
-<div class="notice">⚡ <b>روش کار:</b> پرامپت را بنویس، گزینه را انتخاب کن و وارد صفحه همان Workflow شو. اجرای اصلی روی GitHub Actions انجام می‌شود و خروجی داخل پوشه <b>output</b> برمی‌گردد.</div>
-
-<section class="grid">
-<div class="card">
-<h2>📝 تولید متن</h2><p>برای چت، مقاله، کدنویسی، ترجمه و پاسخ‌های متنی.</p>
-<textarea id="textPrompt" placeholder="مثلاً: یک متن تبلیغاتی برای سوپرمارکت بنویس..."></textarea>
-<div class="row"><select id="textModel"><option value="openai">OpenAI</option><option value="mistral">Mistral</option><option value="llama">Llama</option><option value="claude">Claude</option></select></div>
-<div class="row"><button class="primary" onclick="openWorkflow('text-generation.yml','textPrompt')">اجرای تولید متن ↗</button></div>
-</div>
-
-<div class="card">
-<h2>🎨 تولید تصویر</h2><p>ساخت تصویر با Workflow تصویری موجود در پروژه.</p>
-<textarea id="imagePrompt" placeholder="مثلاً: فروشگاه مدرن محله‌ای در غروب..."></textarea>
-<div class="row"><select id="imageModel"><option>flux</option><option>turbo</option><option>flux-realism</option><option>flux-anime</option><option>flux-3d</option><option>flux-pro</option></select></div>
-<div class="row"><button class="primary" onclick="openWorkflow('image-generation.yml','imagePrompt')">اجرای تولید تصویر ↗</button></div>
-</div>
-
-<div class="card">
-<h2>🧠 تصویر هوشمند</h2><p>پرامپت فارسی را به Workflow بهینه‌سازی و تولید تصویر بده.</p>
-<textarea id="smartPrompt" placeholder="پرامپت فارسی خودت را اینجا بنویس..."></textarea>
-<div class="row"><button class="green" onclick="openWorkflow('smart-image-generation.yml','smartPrompt')">اجرای تصویر هوشمند ↗</button></div>
-</div>
-</section>
-
-<section class="card section">
-<h2>🔎 جست‌وجوی وب</h2><p class="status">جست‌وجوی وب، خبر، تصویر و ویدئو از طریق Workflow موجود.</p>
-<textarea id="searchPrompt" placeholder="مثلاً: آخرین اخبار فناوری هوش مصنوعی"></textarea>
-<div class="row"><button class="secondary" onclick="openWorkflow('web-search.yml','searchPrompt')">اجرای جست‌وجو ↗</button><a class="btn secondary" href="https://github.com/Aghil-Echresh/ai_melli/actions" target="_blank" rel="noopener">همه اجراها ↗</a></div>
-</section>
-
-<section class="card section">
-<h2>🖼️ خروجی‌های اخیر</h2>
-<p id="galleryStatus" class="status">در حال دریافت فایل‌های output...</p>
-<div id="gallery" class="gallery"></div>
-</section>
-
-<div class="footer">AI Melli • ساخته‌شده برای ریپازیتوری Aghil-Echresh/ai_melli</div>
-</div>
+<div class="app">
+<aside class="sidebar" id="sidebar"><div class="brand">✦ AI Melli</div><button class="new" onclick="newChat()">＋ گفت‌وگوی جدید</button><div class="history" id="history"></div><div class="sidefoot">پنل وب پروژه <b>ai_melli</b><br>اجراها از GitHub Actions انجام می‌شوند.</div></aside>
+<main class="main">
+<header class="top"><button class="menu" onclick="toggleSide()">☰</button><div class="title">AI Melli <span class="model">• هوش مصنوعی ملی</span></div></header>
+<section class="chat" id="chat"><div class="empty" id="empty"><h1>چطور می‌تونم کمکت کنم؟</h1><p>یک گفت‌وگوی ساده و تمیز، با دسترسی مستقیم به قابلیت‌های پروژه.</p><div class="suggestions"><button onclick="fill('یک متن حرفه‌ای برای معرفی کسب‌وکار من بنویس')">✍️ یک متن حرفه‌ای بنویس</button><button onclick="fill('یک تصویر سینمایی از یک فروشگاه مدرن طراحی کن')">🎨 یک تصویر بساز</button><button onclick="fill('آخرین اخبار هوش مصنوعی را جست‌وجو کن')">🔎 جست‌وجوی وب</button><button onclick="fill('یک ایده خلاقانه برای پروژه AI Melli بده')">💡 ایده بده</button></div></div></section>
+<div class="composer"><div class="box"><textarea id="input" rows="1" placeholder="پیامت را اینجا بنویس..." onkeydown="key(event)" oninput="resize(this)"></textarea><div class="tools"><button class="tool" onclick="choose('text')">📝 متن</button><button class="tool" onclick="choose('image')">🎨 تصویر</button><button class="tool" onclick="choose('search')">🔎 جست‌وجو</button><button class="send" id="send" onclick="send()">↑</button></div></div><div class="hint">AI Melli ممکن است پاسخ را از طریق GitHub Actions تولید کند.</div></div>
+</main></div>
 <script>
-const owner='Aghil-Echresh',repo='ai_melli',branch='main';
-function openWorkflow(file,field){
-  const prompt=document.getElementById(field).value.trim();
-  if(!prompt){alert('اول پرامپت را وارد کن 🙂');return}
-  localStorage.setItem('ai_melli_prompt_'+file,prompt);
-  window.open('https://github.com/'+owner+'/'+repo+'/actions/workflows/'+file,'_blank');
-}
-async function loadGallery(){
- try{
-  const r=await fetch('https://api.github.com/repos/'+owner+'/'+repo+'/contents/output?ref='+branch);
-  if(!r.ok) throw new Error('GitHub API '+r.status);
-  const files=await r.json();
-  const media=files.filter(x=>x.type==='file' && /\.(png|jpg|jpeg|webp|gif)$/i.test(x.name)).slice(-24).reverse();
-  const gallery=document.getElementById('gallery');
-  gallery.innerHTML='';
-  if(!media.length){document.getElementById('galleryStatus').textContent='هنوز تصویر جدیدی در output نیست.';return}
-  document.getElementById('galleryStatus').textContent=media.length+' تصویر اخیر';
-  for(const f of media){
-    const div=document.createElement('div');div.className='item';
-    div.innerHTML='<img loading="lazy" src="'+f.download_url+'" alt=""><a target="_blank" rel="noopener" href="'+f.html_url+'">'+f.name+'</a>';
-    gallery.appendChild(div);
-  }
- }catch(e){document.getElementById('galleryStatus').textContent='دریافت گالری انجام نشد: '+e.message}
-}
-loadGallery();
-</script>
-</body>
-</html>
+const owner='Aghil-Echresh',repo='ai_melli';let mode='text', chats=JSON.parse(localStorage.getItem('aimelli_chats')||'[]');
+function save(){localStorage.setItem('aimelli_chats',JSON.stringify(chats))}
+function newChat(){document.getElementById('chat').innerHTML='<div class="empty" id="empty"><h1>چطور می‌تونم کمکت کنم؟</h1><p>پیامت را بنویس تا شروع کنیم.</p></div>';document.getElementById('sidebar').classList.remove('open')}
+function toggleSide(){document.getElementById('sidebar').classList.toggle('open')}
+function fill(x){document.getElementById('input').value=x;resize(document.getElementById('input'));document.getElementById('input').focus()}
+function choose(x){mode=x;document.getElementById('input').placeholder=x==='image'?'پرامپت تصویر را بنویس...':x==='search'?'چه چیزی را جست‌وجو کنم؟':'پیامت را اینجا بنویس...'}
+function key(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}}
+function resize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,180)+'px'}
+function add(role,text){let c=document.getElementById('chat');document.getElementById('empty')?.remove();let d=document.createElement('div');d.className='msg '+role;d.innerHTML='<div class="avatar">'+(role==='user'?'ش':'✦')+'</div><div class="bubble"></div>';d.querySelector('.bubble').textContent=text;c.appendChild(d);c.scrollTop=c.scrollHeight}
+function send(){let i=document.getElementById('input'),p=i.value.trim();if(!p)return;add('user',p);chats.push({role:'user',text:p,mode});save();i.value='';resize(i);let file=mode==='image'?'smart-image-generation.yml':mode==='search'?'web-search.yml':'multi-provider-chat-g4f.yml';localStorage.setItem('ai_melli_prompt_'+file,p);add('assistant','در حال آماده‌سازی Workflow...');setTimeout(()=>{let msgs=document.querySelectorAll('.msg.assistant');let last=msgs[msgs.length-1];last.querySelector('.bubble').innerHTML='Workflow آماده است. <a target="_blank" rel="noopener" href="https://github.com/'+owner+'/'+repo+'/actions/workflows/'+file+'">اجرای '+(mode==='image'?'تصویر':mode==='search'?'جست‌وجو':'متن')+' در GitHub ↗</a><br><span class="typing">پرامپت شما در مرورگر ذخیره شده است.</span>';},450)}
+function load(){let h=document.getElementById('history');h.innerHTML='';chats.filter(x=>x.role==='user').slice(-20).reverse().forEach(x=>{let b=document.createElement('button');b.textContent=x.text; b.onclick=()=>fill(x.text);h.appendChild(b)})}load()
+</script></body></html>
